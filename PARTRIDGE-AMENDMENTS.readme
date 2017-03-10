@@ -1,0 +1,18 @@
+-- Schema
+
+git checkout postgresql-wordnet30-schema.sql
+
+sed -i "" 's/public\./wordnet./g' postgresql-wordnet30-schema.sql
+sed -i "" 's/Name: public;/Name: wordnet;/g' postgresql-wordnet30-schema.sql
+sed -i "" 's/Schema: public;/Schema: wordnet;/g' postgresql-wordnet30-schema.sql
+sed -i "" 's/SCHEMA public;/SCHEMA wordnet;/g' postgresql-wordnet30-schema.sql
+sed -i "" 's/search_path = public,/search_path = wordnet,/g' postgresql-wordnet30-schema.sql
+sed -i "" 's/COMMENT ON SCHEMA public/COMMENT ON SCHEMA wordnet/g' postgresql-wordnet30-schema.sql
+sed -i "" 's/Standard public schema/Standard public wordnet schema/g' postgresql-wordnet30-schema.sql
+clear
+git diff postgresql-wordnet30-schema.sql
+grep public postgresql-wordnet30-schema.sql
+
+
+
+
