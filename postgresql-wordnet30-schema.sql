@@ -8,152 +8,152 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET escape_string_warning = off;
 
-SET search_path = public, pg_catalog;
+SET search_path = wordnet, pg_catalog;
 
-ALTER TABLE ONLY public.xwnwsd DROP CONSTRAINT fk_xwnwsd_synsetid;
-ALTER TABLE ONLY public.xwnparselft DROP CONSTRAINT fk_xwnparselft_synsetid;
-ALTER TABLE ONLY public.wordposition DROP CONSTRAINT fk_wordposition_wordid;
-ALTER TABLE ONLY public.wordposition DROP CONSTRAINT fk_wordposition_synsetid;
-ALTER TABLE ONLY public.vnrole DROP CONSTRAINT fk_vnrole_wordid;
-ALTER TABLE ONLY public.vnrole DROP CONSTRAINT fk_vnrole_roletypeid;
-ALTER TABLE ONLY public.vnrole DROP CONSTRAINT fk_vnrole_classid;
-ALTER TABLE ONLY public.vnframeref DROP CONSTRAINT fk_vnframeref_wordid;
-ALTER TABLE ONLY public.vnframeref DROP CONSTRAINT fk_vnframeref_frameid;
-ALTER TABLE ONLY public.vnframeref DROP CONSTRAINT fk_vnframeref_classid;
-ALTER TABLE ONLY public.vnexampleref DROP CONSTRAINT fk_vnexampleref_frameid;
-ALTER TABLE ONLY public.vnexampleref DROP CONSTRAINT fk_vnexampleref_exampleid;
-ALTER TABLE ONLY public.synset DROP CONSTRAINT fk_synset_categoryid;
-ALTER TABLE ONLY public.sentenceref DROP CONSTRAINT fk_sentenceref_wordid;
-ALTER TABLE ONLY public.sentenceref DROP CONSTRAINT fk_sentenceref_synsetid;
-ALTER TABLE ONLY public.sentenceref DROP CONSTRAINT fk_sentenceref_sentenceid;
-ALTER TABLE ONLY public.sense DROP CONSTRAINT fk_sense_wordid;
-ALTER TABLE ONLY public.sense DROP CONSTRAINT fk_sense_synsetid;
-ALTER TABLE ONLY public.semlinkref DROP CONSTRAINT fk_semlinkref_synset2id;
-ALTER TABLE ONLY public.semlinkref DROP CONSTRAINT fk_semlinkref_synset1id;
-ALTER TABLE ONLY public.semlinkref DROP CONSTRAINT fk_semlinkref_linkid;
-ALTER TABLE ONLY public.sample DROP CONSTRAINT fk_sample_synsetid;
-ALTER TABLE ONLY public.morphref DROP CONSTRAINT fk_morphref_wordid;
-ALTER TABLE ONLY public.morphref DROP CONSTRAINT fk_morphref_morphid;
-ALTER TABLE ONLY public.lexlinkref DROP CONSTRAINT fk_lexlinkref_word2id;
-ALTER TABLE ONLY public.lexlinkref DROP CONSTRAINT fk_lexlinkref_word1id;
-ALTER TABLE ONLY public.lexlinkref DROP CONSTRAINT fk_lexlinkref_synset2id;
-ALTER TABLE ONLY public.lexlinkref DROP CONSTRAINT fk_lexlinkref_synset1id;
-ALTER TABLE ONLY public.lexlinkref DROP CONSTRAINT fk_lexlinkref_linkid;
-ALTER TABLE ONLY public.legacy2030 DROP CONSTRAINT fk_legacy_synsetid;
-ALTER TABLE ONLY public.legacy2130 DROP CONSTRAINT fk_legacy2_synsetid;
-ALTER TABLE ONLY public.frameref DROP CONSTRAINT fk_frameref_wordid;
-ALTER TABLE ONLY public.frameref DROP CONSTRAINT fk_frameref_synsetid;
-ALTER TABLE ONLY public.frameref DROP CONSTRAINT fk_frameref_frameid;
-DROP INDEX public.unq_xwnwsd_synsetid_wsd_text;
-DROP INDEX public.unq_xwnparselft_synsetid_parse_lft;
-DROP INDEX public.unq_word_lemma;
-DROP INDEX public.unq_vnselrestrs_selrestrs;
-DROP INDEX public.unq_vnselrestr_value_type;
-DROP INDEX public.unq_vnroletype_type;
-DROP INDEX public.unq_vnrole_wordid_synsetid_classid_roletypeid_selrestrsid;
-DROP INDEX public.unq_vnframeref_wordid_synsetid_frameid_classid;
-DROP INDEX public.unq_vnframedef_all;
-DROP INDEX public.unq_vnexampledef_example;
-DROP INDEX public.unq_vnclass_class;
-DROP INDEX public.unq_morphdef_lemma;
-DROP INDEX public.unq_casedword_lemma;
-DROP INDEX public.k_wnparselft_synsetid;
-DROP INDEX public.k_vnrole_wordid_synsetid;
-DROP INDEX public.k_sense_wordid;
-DROP INDEX public.k_sense_synsetid;
-DROP INDEX public.k_semlinkref_synset2id;
-DROP INDEX public.k_semlinkref_synset1id;
-DROP INDEX public.k_sample_synsetid;
-DROP INDEX public.k_morphref_wordid;
-DROP INDEX public.k_morphref_morphid;
-DROP INDEX public.k_lexlinkref_synset2id_word2id;
-DROP INDEX public.k_lexlinkref_synset1id_word1id;
-DROP INDEX public.k_legacysensekey_sensekey;
-DROP INDEX public.k_legacysensekey2_sensekey;
-DROP INDEX public.k_legacysensekey1_sensekey;
-DROP INDEX public.k_legacy_synsetid2;
-DROP INDEX public.k_legacy_synsetid;
-DROP INDEX public.k_legacy2_synsetid2;
-DROP INDEX public.k_legacy2_synsetid;
-DROP INDEX public.k_legacy1_synsetid2;
-DROP INDEX public.k_legacy1_synsetid;
-ALTER TABLE ONLY public.wordposition DROP CONSTRAINT pk_wordposition;
-ALTER TABLE ONLY public.word DROP CONSTRAINT pk_word;
-ALTER TABLE ONLY public.vnselrestrs DROP CONSTRAINT pk_vnselrestrs;
-ALTER TABLE ONLY public.vnselrestr DROP CONSTRAINT pk_vnselrestr;
-ALTER TABLE ONLY public.vnroletype DROP CONSTRAINT pk_vnroletype;
-ALTER TABLE ONLY public.vnrole DROP CONSTRAINT pk_vnrole;
-ALTER TABLE ONLY public.vnframeref DROP CONSTRAINT pk_vnframeref;
-ALTER TABLE ONLY public.vnframedef DROP CONSTRAINT pk_vnframedef;
-ALTER TABLE ONLY public.vnexampleref DROP CONSTRAINT pk_vnexampleref;
-ALTER TABLE ONLY public.vnexampledef DROP CONSTRAINT pk_vnexampledef;
-ALTER TABLE ONLY public.vnclass DROP CONSTRAINT pk_vnclass;
-ALTER TABLE ONLY public.synset DROP CONSTRAINT pk_synset;
-ALTER TABLE ONLY public.sentenceref DROP CONSTRAINT pk_sentenceref;
-ALTER TABLE ONLY public.sentencedef DROP CONSTRAINT pk_sentencedef;
-ALTER TABLE ONLY public.sense DROP CONSTRAINT pk_sense;
-ALTER TABLE ONLY public.semlinkref DROP CONSTRAINT pk_semlinkref;
-ALTER TABLE ONLY public.sample DROP CONSTRAINT pk_sample;
-ALTER TABLE ONLY public.morphref DROP CONSTRAINT pk_morphref;
-ALTER TABLE ONLY public.morphdef DROP CONSTRAINT pk_morphdef;
-ALTER TABLE ONLY public.linkdef DROP CONSTRAINT pk_linkdef;
-ALTER TABLE ONLY public.lexlinkref DROP CONSTRAINT pk_lexlinkref;
-ALTER TABLE ONLY public.legacysensekey2130 DROP CONSTRAINT pk_legacysensekey2;
-ALTER TABLE ONLY public.legacysensekey2021 DROP CONSTRAINT pk_legacysensekey1;
-ALTER TABLE ONLY public.legacysensekey2030 DROP CONSTRAINT pk_legacysensekey;
-ALTER TABLE ONLY public.legacy2130 DROP CONSTRAINT pk_legacy2;
-ALTER TABLE ONLY public.legacy2021 DROP CONSTRAINT pk_legacy1;
-ALTER TABLE ONLY public.legacy2030 DROP CONSTRAINT pk_legacy;
-ALTER TABLE ONLY public.frameref DROP CONSTRAINT pk_frameref;
-ALTER TABLE ONLY public.framedef DROP CONSTRAINT pk_framedef;
-ALTER TABLE ONLY public.categorydef DROP CONSTRAINT pk_category;
-ALTER TABLE ONLY public.casedword DROP CONSTRAINT pk_casedword;
-DROP TABLE public.xwnwsd;
-DROP TABLE public.xwnparselft;
-DROP TABLE public.wordposition;
-DROP TABLE public.word;
-DROP TABLE public.vnselrestrs;
-DROP TABLE public.vnselrestr;
-DROP TABLE public.vnroletype;
-DROP TABLE public.vnrole;
-DROP TABLE public.vnframeref;
-DROP TABLE public.vnframedef;
-DROP TABLE public.vnexampleref;
-DROP TABLE public.vnexampledef;
-DROP TABLE public.vnclass;
-DROP TABLE public.synset;
-DROP TABLE public.sentenceref;
-DROP TABLE public.sentencedef;
-DROP TABLE public.sense;
-DROP TABLE public.semlinkref;
-DROP TABLE public.sample;
-DROP TABLE public.morphref;
-DROP TABLE public.morphdef;
-DROP TABLE public.linkdef;
-DROP TABLE public.lexlinkref;
-DROP TABLE public.legacysensekey2130;
-DROP TABLE public.legacysensekey2030;
-DROP TABLE public.legacysensekey2021;
-DROP TABLE public.legacy2130;
-DROP TABLE public.legacy2030;
-DROP TABLE public.legacy2021;
-DROP TABLE public.frameref;
-DROP TABLE public.framedef;
-DROP TABLE public.categorydef;
-DROP TABLE public.casedword;
-DROP SCHEMA public;
+ALTER TABLE ONLY wordnet.xwnwsd DROP CONSTRAINT fk_xwnwsd_synsetid;
+ALTER TABLE ONLY wordnet.xwnparselft DROP CONSTRAINT fk_xwnparselft_synsetid;
+ALTER TABLE ONLY wordnet.wordposition DROP CONSTRAINT fk_wordposition_wordid;
+ALTER TABLE ONLY wordnet.wordposition DROP CONSTRAINT fk_wordposition_synsetid;
+ALTER TABLE ONLY wordnet.vnrole DROP CONSTRAINT fk_vnrole_wordid;
+ALTER TABLE ONLY wordnet.vnrole DROP CONSTRAINT fk_vnrole_roletypeid;
+ALTER TABLE ONLY wordnet.vnrole DROP CONSTRAINT fk_vnrole_classid;
+ALTER TABLE ONLY wordnet.vnframeref DROP CONSTRAINT fk_vnframeref_wordid;
+ALTER TABLE ONLY wordnet.vnframeref DROP CONSTRAINT fk_vnframeref_frameid;
+ALTER TABLE ONLY wordnet.vnframeref DROP CONSTRAINT fk_vnframeref_classid;
+ALTER TABLE ONLY wordnet.vnexampleref DROP CONSTRAINT fk_vnexampleref_frameid;
+ALTER TABLE ONLY wordnet.vnexampleref DROP CONSTRAINT fk_vnexampleref_exampleid;
+ALTER TABLE ONLY wordnet.synset DROP CONSTRAINT fk_synset_categoryid;
+ALTER TABLE ONLY wordnet.sentenceref DROP CONSTRAINT fk_sentenceref_wordid;
+ALTER TABLE ONLY wordnet.sentenceref DROP CONSTRAINT fk_sentenceref_synsetid;
+ALTER TABLE ONLY wordnet.sentenceref DROP CONSTRAINT fk_sentenceref_sentenceid;
+ALTER TABLE ONLY wordnet.sense DROP CONSTRAINT fk_sense_wordid;
+ALTER TABLE ONLY wordnet.sense DROP CONSTRAINT fk_sense_synsetid;
+ALTER TABLE ONLY wordnet.semlinkref DROP CONSTRAINT fk_semlinkref_synset2id;
+ALTER TABLE ONLY wordnet.semlinkref DROP CONSTRAINT fk_semlinkref_synset1id;
+ALTER TABLE ONLY wordnet.semlinkref DROP CONSTRAINT fk_semlinkref_linkid;
+ALTER TABLE ONLY wordnet.sample DROP CONSTRAINT fk_sample_synsetid;
+ALTER TABLE ONLY wordnet.morphref DROP CONSTRAINT fk_morphref_wordid;
+ALTER TABLE ONLY wordnet.morphref DROP CONSTRAINT fk_morphref_morphid;
+ALTER TABLE ONLY wordnet.lexlinkref DROP CONSTRAINT fk_lexlinkref_word2id;
+ALTER TABLE ONLY wordnet.lexlinkref DROP CONSTRAINT fk_lexlinkref_word1id;
+ALTER TABLE ONLY wordnet.lexlinkref DROP CONSTRAINT fk_lexlinkref_synset2id;
+ALTER TABLE ONLY wordnet.lexlinkref DROP CONSTRAINT fk_lexlinkref_synset1id;
+ALTER TABLE ONLY wordnet.lexlinkref DROP CONSTRAINT fk_lexlinkref_linkid;
+ALTER TABLE ONLY wordnet.legacy2030 DROP CONSTRAINT fk_legacy_synsetid;
+ALTER TABLE ONLY wordnet.legacy2130 DROP CONSTRAINT fk_legacy2_synsetid;
+ALTER TABLE ONLY wordnet.frameref DROP CONSTRAINT fk_frameref_wordid;
+ALTER TABLE ONLY wordnet.frameref DROP CONSTRAINT fk_frameref_synsetid;
+ALTER TABLE ONLY wordnet.frameref DROP CONSTRAINT fk_frameref_frameid;
+DROP INDEX wordnet.unq_xwnwsd_synsetid_wsd_text;
+DROP INDEX wordnet.unq_xwnparselft_synsetid_parse_lft;
+DROP INDEX wordnet.unq_word_lemma;
+DROP INDEX wordnet.unq_vnselrestrs_selrestrs;
+DROP INDEX wordnet.unq_vnselrestr_value_type;
+DROP INDEX wordnet.unq_vnroletype_type;
+DROP INDEX wordnet.unq_vnrole_wordid_synsetid_classid_roletypeid_selrestrsid;
+DROP INDEX wordnet.unq_vnframeref_wordid_synsetid_frameid_classid;
+DROP INDEX wordnet.unq_vnframedef_all;
+DROP INDEX wordnet.unq_vnexampledef_example;
+DROP INDEX wordnet.unq_vnclass_class;
+DROP INDEX wordnet.unq_morphdef_lemma;
+DROP INDEX wordnet.unq_casedword_lemma;
+DROP INDEX wordnet.k_wnparselft_synsetid;
+DROP INDEX wordnet.k_vnrole_wordid_synsetid;
+DROP INDEX wordnet.k_sense_wordid;
+DROP INDEX wordnet.k_sense_synsetid;
+DROP INDEX wordnet.k_semlinkref_synset2id;
+DROP INDEX wordnet.k_semlinkref_synset1id;
+DROP INDEX wordnet.k_sample_synsetid;
+DROP INDEX wordnet.k_morphref_wordid;
+DROP INDEX wordnet.k_morphref_morphid;
+DROP INDEX wordnet.k_lexlinkref_synset2id_word2id;
+DROP INDEX wordnet.k_lexlinkref_synset1id_word1id;
+DROP INDEX wordnet.k_legacysensekey_sensekey;
+DROP INDEX wordnet.k_legacysensekey2_sensekey;
+DROP INDEX wordnet.k_legacysensekey1_sensekey;
+DROP INDEX wordnet.k_legacy_synsetid2;
+DROP INDEX wordnet.k_legacy_synsetid;
+DROP INDEX wordnet.k_legacy2_synsetid2;
+DROP INDEX wordnet.k_legacy2_synsetid;
+DROP INDEX wordnet.k_legacy1_synsetid2;
+DROP INDEX wordnet.k_legacy1_synsetid;
+ALTER TABLE ONLY wordnet.wordposition DROP CONSTRAINT pk_wordposition;
+ALTER TABLE ONLY wordnet.word DROP CONSTRAINT pk_word;
+ALTER TABLE ONLY wordnet.vnselrestrs DROP CONSTRAINT pk_vnselrestrs;
+ALTER TABLE ONLY wordnet.vnselrestr DROP CONSTRAINT pk_vnselrestr;
+ALTER TABLE ONLY wordnet.vnroletype DROP CONSTRAINT pk_vnroletype;
+ALTER TABLE ONLY wordnet.vnrole DROP CONSTRAINT pk_vnrole;
+ALTER TABLE ONLY wordnet.vnframeref DROP CONSTRAINT pk_vnframeref;
+ALTER TABLE ONLY wordnet.vnframedef DROP CONSTRAINT pk_vnframedef;
+ALTER TABLE ONLY wordnet.vnexampleref DROP CONSTRAINT pk_vnexampleref;
+ALTER TABLE ONLY wordnet.vnexampledef DROP CONSTRAINT pk_vnexampledef;
+ALTER TABLE ONLY wordnet.vnclass DROP CONSTRAINT pk_vnclass;
+ALTER TABLE ONLY wordnet.synset DROP CONSTRAINT pk_synset;
+ALTER TABLE ONLY wordnet.sentenceref DROP CONSTRAINT pk_sentenceref;
+ALTER TABLE ONLY wordnet.sentencedef DROP CONSTRAINT pk_sentencedef;
+ALTER TABLE ONLY wordnet.sense DROP CONSTRAINT pk_sense;
+ALTER TABLE ONLY wordnet.semlinkref DROP CONSTRAINT pk_semlinkref;
+ALTER TABLE ONLY wordnet.sample DROP CONSTRAINT pk_sample;
+ALTER TABLE ONLY wordnet.morphref DROP CONSTRAINT pk_morphref;
+ALTER TABLE ONLY wordnet.morphdef DROP CONSTRAINT pk_morphdef;
+ALTER TABLE ONLY wordnet.linkdef DROP CONSTRAINT pk_linkdef;
+ALTER TABLE ONLY wordnet.lexlinkref DROP CONSTRAINT pk_lexlinkref;
+ALTER TABLE ONLY wordnet.legacysensekey2130 DROP CONSTRAINT pk_legacysensekey2;
+ALTER TABLE ONLY wordnet.legacysensekey2021 DROP CONSTRAINT pk_legacysensekey1;
+ALTER TABLE ONLY wordnet.legacysensekey2030 DROP CONSTRAINT pk_legacysensekey;
+ALTER TABLE ONLY wordnet.legacy2130 DROP CONSTRAINT pk_legacy2;
+ALTER TABLE ONLY wordnet.legacy2021 DROP CONSTRAINT pk_legacy1;
+ALTER TABLE ONLY wordnet.legacy2030 DROP CONSTRAINT pk_legacy;
+ALTER TABLE ONLY wordnet.frameref DROP CONSTRAINT pk_frameref;
+ALTER TABLE ONLY wordnet.framedef DROP CONSTRAINT pk_framedef;
+ALTER TABLE ONLY wordnet.categorydef DROP CONSTRAINT pk_category;
+ALTER TABLE ONLY wordnet.casedword DROP CONSTRAINT pk_casedword;
+DROP TABLE wordnet.xwnwsd;
+DROP TABLE wordnet.xwnparselft;
+DROP TABLE wordnet.wordposition;
+DROP TABLE wordnet.word;
+DROP TABLE wordnet.vnselrestrs;
+DROP TABLE wordnet.vnselrestr;
+DROP TABLE wordnet.vnroletype;
+DROP TABLE wordnet.vnrole;
+DROP TABLE wordnet.vnframeref;
+DROP TABLE wordnet.vnframedef;
+DROP TABLE wordnet.vnexampleref;
+DROP TABLE wordnet.vnexampledef;
+DROP TABLE wordnet.vnclass;
+DROP TABLE wordnet.synset;
+DROP TABLE wordnet.sentenceref;
+DROP TABLE wordnet.sentencedef;
+DROP TABLE wordnet.sense;
+DROP TABLE wordnet.semlinkref;
+DROP TABLE wordnet.sample;
+DROP TABLE wordnet.morphref;
+DROP TABLE wordnet.morphdef;
+DROP TABLE wordnet.linkdef;
+DROP TABLE wordnet.lexlinkref;
+DROP TABLE wordnet.legacysensekey2130;
+DROP TABLE wordnet.legacysensekey2030;
+DROP TABLE wordnet.legacysensekey2021;
+DROP TABLE wordnet.legacy2130;
+DROP TABLE wordnet.legacy2030;
+DROP TABLE wordnet.legacy2021;
+DROP TABLE wordnet.frameref;
+DROP TABLE wordnet.framedef;
+DROP TABLE wordnet.categorydef;
+DROP TABLE wordnet.casedword;
+DROP SCHEMA wordnet;
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA public;
-
-
---
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: -
+-- Name: wordnet; Type: SCHEMA; Schema: -; Owner: -
 --
 
-COMMENT ON SCHEMA public IS 'Standard public schema';
+CREATE SCHEMA wordnet;
+
+
+--
+-- Name: SCHEMA wordnet; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON SCHEMA wordnet IS 'Standard public wordnet schema';
 
 
 SET default_tablespace = '';
@@ -161,7 +161,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: casedword; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: casedword; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE casedword (
@@ -171,7 +171,7 @@ CREATE TABLE casedword (
 
 
 --
--- Name: categorydef; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: categorydef; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE categorydef (
@@ -182,7 +182,7 @@ CREATE TABLE categorydef (
 
 
 --
--- Name: framedef; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: framedef; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE framedef (
@@ -192,7 +192,7 @@ CREATE TABLE framedef (
 
 
 --
--- Name: frameref; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: frameref; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE frameref (
@@ -203,7 +203,7 @@ CREATE TABLE frameref (
 
 
 --
--- Name: legacy2021; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: legacy2021; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE legacy2021 (
@@ -215,7 +215,7 @@ CREATE TABLE legacy2021 (
 
 
 --
--- Name: legacy2030; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: legacy2030; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE legacy2030 (
@@ -227,7 +227,7 @@ CREATE TABLE legacy2030 (
 
 
 --
--- Name: legacy2130; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: legacy2130; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE legacy2130 (
@@ -239,7 +239,7 @@ CREATE TABLE legacy2130 (
 
 
 --
--- Name: legacysensekey2021; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: legacysensekey2021; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE legacysensekey2021 (
@@ -249,7 +249,7 @@ CREATE TABLE legacysensekey2021 (
 
 
 --
--- Name: legacysensekey2030; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: legacysensekey2030; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE legacysensekey2030 (
@@ -259,7 +259,7 @@ CREATE TABLE legacysensekey2030 (
 
 
 --
--- Name: legacysensekey2130; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: legacysensekey2130; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE legacysensekey2130 (
@@ -269,7 +269,7 @@ CREATE TABLE legacysensekey2130 (
 
 
 --
--- Name: lexlinkref; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: lexlinkref; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE lexlinkref (
@@ -282,7 +282,7 @@ CREATE TABLE lexlinkref (
 
 
 --
--- Name: linkdef; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: linkdef; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE linkdef (
@@ -293,7 +293,7 @@ CREATE TABLE linkdef (
 
 
 --
--- Name: morphdef; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: morphdef; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE morphdef (
@@ -303,7 +303,7 @@ CREATE TABLE morphdef (
 
 
 --
--- Name: morphref; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: morphref; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE morphref (
@@ -314,7 +314,7 @@ CREATE TABLE morphref (
 
 
 --
--- Name: sample; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: sample; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sample (
@@ -325,7 +325,7 @@ CREATE TABLE sample (
 
 
 --
--- Name: semlinkref; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: semlinkref; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE semlinkref (
@@ -336,7 +336,7 @@ CREATE TABLE semlinkref (
 
 
 --
--- Name: sense; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: sense; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sense (
@@ -350,7 +350,7 @@ CREATE TABLE sense (
 
 
 --
--- Name: sentencedef; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: sentencedef; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sentencedef (
@@ -360,7 +360,7 @@ CREATE TABLE sentencedef (
 
 
 --
--- Name: sentenceref; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: sentenceref; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE sentenceref (
@@ -371,7 +371,7 @@ CREATE TABLE sentenceref (
 
 
 --
--- Name: synset; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: synset; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE synset (
@@ -383,7 +383,7 @@ CREATE TABLE synset (
 
 
 --
--- Name: vnclass; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnclass; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnclass (
@@ -393,7 +393,7 @@ CREATE TABLE vnclass (
 
 
 --
--- Name: vnexampledef; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnexampledef; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnexampledef (
@@ -403,7 +403,7 @@ CREATE TABLE vnexampledef (
 
 
 --
--- Name: vnexampleref; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnexampleref; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnexampleref (
@@ -413,7 +413,7 @@ CREATE TABLE vnexampleref (
 
 
 --
--- Name: vnframedef; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnframedef; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnframedef (
@@ -428,7 +428,7 @@ CREATE TABLE vnframedef (
 
 
 --
--- Name: vnframeref; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnframeref; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnframeref (
@@ -442,7 +442,7 @@ CREATE TABLE vnframeref (
 
 
 --
--- Name: vnrole; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnrole; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnrole (
@@ -458,7 +458,7 @@ CREATE TABLE vnrole (
 
 
 --
--- Name: vnroletype; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnroletype; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnroletype (
@@ -468,7 +468,7 @@ CREATE TABLE vnroletype (
 
 
 --
--- Name: vnselrestr; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnselrestr; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnselrestr (
@@ -479,7 +479,7 @@ CREATE TABLE vnselrestr (
 
 
 --
--- Name: vnselrestrs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: vnselrestrs; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE vnselrestrs (
@@ -489,7 +489,7 @@ CREATE TABLE vnselrestrs (
 
 
 --
--- Name: word; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: word; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE word (
@@ -499,7 +499,7 @@ CREATE TABLE word (
 
 
 --
--- Name: wordposition; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: wordposition; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE wordposition (
@@ -510,7 +510,7 @@ CREATE TABLE wordposition (
 
 
 --
--- Name: xwnparselft; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: xwnparselft; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE xwnparselft (
@@ -523,7 +523,7 @@ CREATE TABLE xwnparselft (
 
 
 --
--- Name: xwnwsd; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: xwnwsd; Type: TABLE; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE TABLE xwnwsd (
@@ -534,7 +534,7 @@ CREATE TABLE xwnwsd (
 
 
 --
--- Name: pk_casedword; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_casedword; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY casedword
@@ -542,7 +542,7 @@ ALTER TABLE ONLY casedword
 
 
 --
--- Name: pk_category; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_category; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY categorydef
@@ -550,7 +550,7 @@ ALTER TABLE ONLY categorydef
 
 
 --
--- Name: pk_framedef; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_framedef; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY framedef
@@ -558,7 +558,7 @@ ALTER TABLE ONLY framedef
 
 
 --
--- Name: pk_frameref; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_frameref; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY frameref
@@ -566,7 +566,7 @@ ALTER TABLE ONLY frameref
 
 
 --
--- Name: pk_legacy; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_legacy; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY legacy2030
@@ -574,7 +574,7 @@ ALTER TABLE ONLY legacy2030
 
 
 --
--- Name: pk_legacy1; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_legacy1; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY legacy2021
@@ -582,7 +582,7 @@ ALTER TABLE ONLY legacy2021
 
 
 --
--- Name: pk_legacy2; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_legacy2; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY legacy2130
@@ -590,7 +590,7 @@ ALTER TABLE ONLY legacy2130
 
 
 --
--- Name: pk_legacysensekey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_legacysensekey; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY legacysensekey2030
@@ -598,7 +598,7 @@ ALTER TABLE ONLY legacysensekey2030
 
 
 --
--- Name: pk_legacysensekey1; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_legacysensekey1; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY legacysensekey2021
@@ -606,7 +606,7 @@ ALTER TABLE ONLY legacysensekey2021
 
 
 --
--- Name: pk_legacysensekey2; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_legacysensekey2; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY legacysensekey2130
@@ -614,7 +614,7 @@ ALTER TABLE ONLY legacysensekey2130
 
 
 --
--- Name: pk_lexlinkref; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_lexlinkref; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY lexlinkref
@@ -622,7 +622,7 @@ ALTER TABLE ONLY lexlinkref
 
 
 --
--- Name: pk_linkdef; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_linkdef; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY linkdef
@@ -630,7 +630,7 @@ ALTER TABLE ONLY linkdef
 
 
 --
--- Name: pk_morphdef; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_morphdef; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY morphdef
@@ -638,7 +638,7 @@ ALTER TABLE ONLY morphdef
 
 
 --
--- Name: pk_morphref; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_morphref; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY morphref
@@ -646,7 +646,7 @@ ALTER TABLE ONLY morphref
 
 
 --
--- Name: pk_sample; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_sample; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY sample
@@ -654,7 +654,7 @@ ALTER TABLE ONLY sample
 
 
 --
--- Name: pk_semlinkref; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_semlinkref; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY semlinkref
@@ -662,7 +662,7 @@ ALTER TABLE ONLY semlinkref
 
 
 --
--- Name: pk_sense; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_sense; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY sense
@@ -670,7 +670,7 @@ ALTER TABLE ONLY sense
 
 
 --
--- Name: pk_sentencedef; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_sentencedef; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY sentencedef
@@ -678,7 +678,7 @@ ALTER TABLE ONLY sentencedef
 
 
 --
--- Name: pk_sentenceref; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_sentenceref; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY sentenceref
@@ -686,7 +686,7 @@ ALTER TABLE ONLY sentenceref
 
 
 --
--- Name: pk_synset; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_synset; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY synset
@@ -694,7 +694,7 @@ ALTER TABLE ONLY synset
 
 
 --
--- Name: pk_vnclass; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnclass; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnclass
@@ -702,7 +702,7 @@ ALTER TABLE ONLY vnclass
 
 
 --
--- Name: pk_vnexampledef; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnexampledef; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnexampledef
@@ -710,7 +710,7 @@ ALTER TABLE ONLY vnexampledef
 
 
 --
--- Name: pk_vnexampleref; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnexampleref; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnexampleref
@@ -718,7 +718,7 @@ ALTER TABLE ONLY vnexampleref
 
 
 --
--- Name: pk_vnframedef; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnframedef; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnframedef
@@ -726,7 +726,7 @@ ALTER TABLE ONLY vnframedef
 
 
 --
--- Name: pk_vnframeref; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnframeref; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnframeref
@@ -734,7 +734,7 @@ ALTER TABLE ONLY vnframeref
 
 
 --
--- Name: pk_vnrole; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnrole; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnrole
@@ -742,7 +742,7 @@ ALTER TABLE ONLY vnrole
 
 
 --
--- Name: pk_vnroletype; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnroletype; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnroletype
@@ -750,7 +750,7 @@ ALTER TABLE ONLY vnroletype
 
 
 --
--- Name: pk_vnselrestr; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnselrestr; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnselrestr
@@ -758,7 +758,7 @@ ALTER TABLE ONLY vnselrestr
 
 
 --
--- Name: pk_vnselrestrs; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_vnselrestrs; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY vnselrestrs
@@ -766,7 +766,7 @@ ALTER TABLE ONLY vnselrestrs
 
 
 --
--- Name: pk_word; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_word; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY word
@@ -774,7 +774,7 @@ ALTER TABLE ONLY word
 
 
 --
--- Name: pk_wordposition; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: pk_wordposition; Type: CONSTRAINT; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 ALTER TABLE ONLY wordposition
@@ -782,231 +782,231 @@ ALTER TABLE ONLY wordposition
 
 
 --
--- Name: k_legacy1_synsetid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacy1_synsetid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacy1_synsetid ON legacy2021 USING btree (synsetid);
 
 
 --
--- Name: k_legacy1_synsetid2; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacy1_synsetid2; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacy1_synsetid2 ON legacy2021 USING btree (synsetid2);
 
 
 --
--- Name: k_legacy2_synsetid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacy2_synsetid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacy2_synsetid ON legacy2130 USING btree (synsetid);
 
 
 --
--- Name: k_legacy2_synsetid2; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacy2_synsetid2; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacy2_synsetid2 ON legacy2130 USING btree (synsetid2);
 
 
 --
--- Name: k_legacy_synsetid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacy_synsetid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacy_synsetid ON legacy2030 USING btree (synsetid);
 
 
 --
--- Name: k_legacy_synsetid2; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacy_synsetid2; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacy_synsetid2 ON legacy2030 USING btree (synsetid2);
 
 
 --
--- Name: k_legacysensekey1_sensekey; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacysensekey1_sensekey; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacysensekey1_sensekey ON legacysensekey2021 USING btree (sensekey);
 
 
 --
--- Name: k_legacysensekey2_sensekey; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacysensekey2_sensekey; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacysensekey2_sensekey ON legacysensekey2130 USING btree (sensekey);
 
 
 --
--- Name: k_legacysensekey_sensekey; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_legacysensekey_sensekey; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_legacysensekey_sensekey ON legacysensekey2030 USING btree (sensekey);
 
 
 --
--- Name: k_lexlinkref_synset1id_word1id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_lexlinkref_synset1id_word1id; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_lexlinkref_synset1id_word1id ON lexlinkref USING btree (synset1id, word1id);
 
 
 --
--- Name: k_lexlinkref_synset2id_word2id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_lexlinkref_synset2id_word2id; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_lexlinkref_synset2id_word2id ON lexlinkref USING btree (synset2id, word2id);
 
 
 --
--- Name: k_morphref_morphid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_morphref_morphid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_morphref_morphid ON morphref USING btree (morphid);
 
 
 --
--- Name: k_morphref_wordid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_morphref_wordid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_morphref_wordid ON morphref USING btree (wordid);
 
 
 --
--- Name: k_sample_synsetid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_sample_synsetid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_sample_synsetid ON sample USING btree (synsetid);
 
 
 --
--- Name: k_semlinkref_synset1id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_semlinkref_synset1id; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_semlinkref_synset1id ON semlinkref USING btree (synset1id);
 
 
 --
--- Name: k_semlinkref_synset2id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_semlinkref_synset2id; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_semlinkref_synset2id ON semlinkref USING btree (synset2id);
 
 
 --
--- Name: k_sense_synsetid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_sense_synsetid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_sense_synsetid ON sense USING btree (synsetid);
 
 
 --
--- Name: k_sense_wordid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_sense_wordid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_sense_wordid ON sense USING btree (wordid);
 
 
 --
--- Name: k_vnrole_wordid_synsetid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_vnrole_wordid_synsetid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_vnrole_wordid_synsetid ON vnrole USING btree (wordid, synsetid);
 
 
 --
--- Name: k_wnparselft_synsetid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: k_wnparselft_synsetid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE INDEX k_wnparselft_synsetid ON xwnparselft USING btree (synsetid);
 
 
 --
--- Name: unq_casedword_lemma; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_casedword_lemma; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_casedword_lemma ON casedword USING btree (lemma);
 
 
 --
--- Name: unq_morphdef_lemma; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_morphdef_lemma; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_morphdef_lemma ON morphdef USING btree (lemma);
 
 
 --
--- Name: unq_vnclass_class; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_vnclass_class; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_vnclass_class ON vnclass USING btree ("class");
 
 
 --
--- Name: unq_vnexampledef_example; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_vnexampledef_example; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_vnexampledef_example ON vnexampledef USING btree (example);
 
 
 --
--- Name: unq_vnframedef_all; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_vnframedef_all; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_vnframedef_all ON vnframedef USING btree (number, xtag, description1, description2, syntax, semantics);
 
 
 --
--- Name: unq_vnframeref_wordid_synsetid_frameid_classid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_vnframeref_wordid_synsetid_frameid_classid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_vnframeref_wordid_synsetid_frameid_classid ON vnframeref USING btree (wordid, synsetid, frameid, classid);
 
 
 --
--- Name: unq_vnrole_wordid_synsetid_classid_roletypeid_selrestrsid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_vnrole_wordid_synsetid_classid_roletypeid_selrestrsid; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_vnrole_wordid_synsetid_classid_roletypeid_selrestrsid ON vnrole USING btree (wordid, synsetid, classid, roletypeid, selrestrsid);
 
 
 --
--- Name: unq_vnroletype_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_vnroletype_type; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_vnroletype_type ON vnroletype USING btree ("type");
 
 
 --
--- Name: unq_vnselrestr_value_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_vnselrestr_value_type; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_vnselrestr_value_type ON vnselrestr USING btree (value, "type");
 
 
 --
--- Name: unq_vnselrestrs_selrestrs; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_vnselrestrs_selrestrs; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_vnselrestrs_selrestrs ON vnselrestrs USING btree (selrestrs);
 
 
 --
--- Name: unq_word_lemma; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_word_lemma; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_word_lemma ON word USING btree (lemma);
 
 
 --
--- Name: unq_xwnparselft_synsetid_parse_lft; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_xwnparselft_synsetid_parse_lft; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_xwnparselft_synsetid_parse_lft ON xwnparselft USING btree (synsetid, parse, lft);
 
 
 --
--- Name: unq_xwnwsd_synsetid_wsd_text; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unq_xwnwsd_synsetid_wsd_text; Type: INDEX; Schema: wordnet; Owner: -; Tablespace: 
 --
 
 CREATE UNIQUE INDEX unq_xwnwsd_synsetid_wsd_text ON xwnwsd USING btree (synsetid, wsd, text);
